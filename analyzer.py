@@ -6,7 +6,9 @@ from __future__ import division
 
 import collections
 import re
+import nltk
 
+mystemmer = Stemmer(nltk.stem.LancasterStemmer)
 
 class Emotion:
 
@@ -17,11 +19,10 @@ class Emotion:
 
 	def __init__(self, string, stem=None, rating=1.0, hashtag=False):
 
-		# This is the class for an emotional signifier
 		# We initialize with the following variables:
 
 		# @param string:		the string representation of emotional signifier
-		# @param stem:		the stemmed representation
+		# @param stem:			the stemmed representation
 		# @param rating:		magnitude of the emotional signifier; range [0,1]
 		# @param hashtag:		whether the emotional signifier is a hashtag
 
@@ -43,8 +44,66 @@ class Emotion:
 	def __hash__ (self):
 		return hash(self.stem)
 
+
 class MixedEmotion(Emotion):
 
 	# Class for combinations of emotional signifiers
+
+	def __init__(self, tail, head=None):
+
+		# @param tail:		TODO DESCRIPTION
+		# @param head:		TODO DESCRIPTION
+
+		if not head:
+			# TODO
+		else:
+			# TODO
+
+	def combined_rating(self):
+
+		# Method for combining ratings for multiple emotional signifiers
+		# Default should be geometric mean
+
+		# TODO
+
+
+class Reader:
+
+	# Class for parsing a tweet into emotional signifiers
+
+	match_apostrophes = re.compile(r'`|’')
+    match_paragraphs = re.compile(r'[\.\?!\t\n\r\f\v]+')
+    match_phrases = re.compile(r'[,;:\(\)\[\]\{\}<>]+')
+    match_words = re.compile(r'[\w\-\'_/&]+')
+
+    # TODO: Create functionality for emoticons, such as :)  :*  :D
+
+	def __call__(self, text):
+
+		# @param text:		the string of text (tweets) to be analyzed
+		# @returns:			list of tweets ranked by positivity of emotion;
+		# 					range (0, 1: most negative to most positive)
+
+		text = self.preprocess(text)
+
+		# TODO: Figure out how to split blocks of tweets
+
+		tweets = []
+
+		# TODO: Interate through tweets
+
+		for tweet in tweets:
+			# TODO:
+			# Iterate through phrases (every few words) in tweet
+			# Create map of emotional signifiers (Emotions) for each tweet
+
+	def preprocess(self, text):
+
+		# @param:		string containing original document
+		# @param:		processed text
+
+		# TODO: Decide how we want to preprocess, if this is necessary
+
+
 
 
